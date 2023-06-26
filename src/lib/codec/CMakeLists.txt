@@ -17,6 +17,8 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/image_format
   ${CMAKE_CURRENT_SOURCE_DIR}/common
   ${CMAKE_CURRENT_SOURCE_DIR}/jp2
+  # TODO 增加JNI层代码的头文件
+  ${CMAKE_CURRENT_SOURCE_DIR}/jni
 )
 
 set(GROK_CODEC_SRCS
@@ -57,6 +59,8 @@ set(GROK_CODEC_SRCS
   ${CMAKE_CURRENT_SOURCE_DIR}/jp2/GrkDecompress.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/jp2/GrkDump.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/jp2/GrkCompareImages.cpp
+  # TODO JNI层代码
+  ${CMAKE_CURRENT_SOURCE_DIR}/native-lib.cpp
 )
 
 if(GROK_HAVE_LIBTIFF)
@@ -91,7 +95,7 @@ endif()
 if(UNIX)
   target_link_libraries(${GROK_CODEC_NAME} PUBLIC ${CMAKE_THREAD_LIBS_INIT})
 endif()
-set_target_properties(${GROK_CODEC_NAME} PROPERTIES ${GROK_LIBRARY_PROPERTIES})
+#set_target_properties(${GROK_CODEC_NAME} PROPERTIES ${GROK_LIBRARY_PROPERTIES})
 target_compile_options(${GROK_CODEC_NAME} PRIVATE ${GROK_COMPILE_OPTIONS})
 
 # hardening
